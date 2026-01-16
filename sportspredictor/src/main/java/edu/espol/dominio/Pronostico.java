@@ -1,17 +1,24 @@
 package edu.espol.dominio;
-
 public class Pronostico {
-    // Asegúrate de tener definidos los atributos prediccion, estado y usuario
-    
-    public int calcularPuntos(String resultadoReal) {
-        if (prediccion.equals(resultadoReal)) {
-            this.estado = EstadoPronostico.ACERTADO; // Usa el Enum de la Refactor 3
-            int puntos = ConstantesSistema.PUNTOS_BASE_ACIERTO; // Refactor 7: Sin números mágicos
-            usuario.agregarPuntos(puntos);
-            return puntos;
-        } else {
-            this.estado = EstadoPronostico.FALLIDO;
-            return 0;
-        }
-    }
+public ResultadoCalculoPuntos calcularPuntos(String resultadoReal) {
+boolean acerto = prediccion.equals(resultadoReal);
+if (acerto) {
+this.estado = EstadoPronostico.ACERTADO;
+} else {
+this.estado = EstadoPronostico.FALLIDO;
+}
+return new ResultadoCalculoPuntos(acerto,
+acerto ? ConstantesSistema.PUNTOS_BASE_ACIERTO : 0);
+}
+// Clase interna para resultado
+public static class ResultadoCalculoPuntos {
+private final boolean acertado;
+private final int puntos;
+public ResultadoCalculoPuntos(boolean acertado, int puntos) {
+this.acertado = acertado;
+this.puntos = puntos;
+}
+public boolean isAcertado() { return acertado; }
+public int getPuntos() { return puntos; }
+}
 }
