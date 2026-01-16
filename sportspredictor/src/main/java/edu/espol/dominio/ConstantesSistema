@@ -1,0 +1,21 @@
+package edu.espol.dominio;
+public final class ConstantesSistema {
+// Puntuaciones
+public static final int PUNTOS_BASE_ACIERTO = 10;
+public static final int PUNTOS_MARCADOR_EXACTO = 25;
+public static final int PUNTOS_AMBAS_MARCAS = 15;
+public static final int PUNTOS_GANADOR = 10;
+public static final int PUNTOS_DIFERENCIA_EXACTA = 20;
+public static final int PUNTOS_OVER_UNDER = 12;
+public static final int PUNTOS_RESULTADO_EXACTO = 30;
+public static final int PUNTOS_NUMERO_SETS = 18;
+// Límites
+public static final int MAX_PRONOSTICOS_POR_USUARIO = 100;
+public static final int MIN_PUNTOS_CANJE = 50;
+// Tiempos
+public static final int MINUTOS_CIERRE_PRONOSTICO = 5;
+// Private constructor para evitar instanciación
+private ConstantesSistema() {
+throw new AssertionError("No se pueden crear instancias de ConstantesSistema");
+}
+}
