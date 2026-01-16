@@ -1,0 +1,13 @@
+package edu.espol.Patrones.estructurales;
+
+public class CanalPush implements CanalNotificacion {
+@Override
+public void enviar(EventoDeportivo evento, String mensaje) {
+System.out.println("Push notification: " + mensaje);
+// Lógica real de push
+}
+@Override
+public String getNombreCanal() {
+return "push";
+}
+}
