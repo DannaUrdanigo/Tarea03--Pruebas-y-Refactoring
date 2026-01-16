@@ -1,31 +1,22 @@
 package edu.espol.dominio.eventos;
 
-import java.util.Date;
-
-import edu.espol.dominio.Deporte;
+import edu.espol.dominio.DetallesPartido;
 import edu.espol.dominio.EventoDeportivo;
 
 public class EventoFutbol extends EventoDeportivo {
-    private String equipoLocal;
-    private String equipoVisitante;
-    private String estadio;
-    
-    public EventoFutbol(String id, String nombre, Date fecha, Deporte deporte) {
-        super(id, nombre, fecha, deporte);
+    private DetallesPartido detalles;
+
+    public void setDetalles(DetallesPartido detalles) {
+        this.detalles = detalles;
     }
-    
-    public void setDetalles(String local, String visitante, String estadio) {
-        this.equipoLocal = local;
-        this.equipoVisitante = visitante;
-        this.estadio = estadio;
-    }
-    
+
     public String getDetallesPartido() {
-        return equipoLocal + " vs " + equipoVisitante + " en " + estadio;
+        return detalles != null ? detalles.toString() : "Detalles no configurados";
     }
-    
-    // Métodos específicos de fútbol
-    public String getEquipoLocal() { return equipoLocal; }
-    public String getEquipoVisitante() { return equipoVisitante; }
-    public String getEstadio() { return estadio; }
+
+    // Método de conveniencia
+    public void setDetallesFutbol(String local, String visitante, String estadio) {
+        this.detalles = DetallesPartido.paraFutbol(local, visitante, estadio);
+    }
 }
+
