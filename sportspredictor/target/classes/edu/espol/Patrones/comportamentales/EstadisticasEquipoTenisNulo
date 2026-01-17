@@ -1,0 +1,18 @@
+package edu.espol.Patrones.comportamentales;
+import java.util.Collections;
+import java.util.Map;
+public class EstadisticasEquipoTenisNulo implements FuenteEstadisticas {
+@Override
+public Map<String, Object> obtenerEstadisticasJugador(String jugadorId) {
+return Collections.emptyMap(); // O lanzar excepción
+}
+@Override
+public Map<String, Object> obtenerEstadisticasEquipo(String equipoId) {
+// Retorna mapa vacío con mensaje claro
+Map<String, Object> resultado = new java.util.HashMap<>();
+resultado.put("mensaje", "El tenis no tiene estadísticas de equipo");
+resultado.put("deporte", "Tenis");
+resultado.put("recomendacion", "Use obtenerEstadisticasJugador()");
+return resultado;
+}
+}

@@ -1,0 +1,12 @@
+package edu.espol.Patrones.comportamentales;
+public interface FuenteEstadisticasDeporte {
+Map<String, Object> obtenerEstadisticasJugador(String jugadorId);
+// Método opcional para deportes con equipos
+default boolean soportaEstadisticasEquipo() {
+return false;
+}
+default Map<String, Object> obtenerEstadisticasEquipo(String equipoId) {
+throw new UnsupportedOperationException(
+"Este deporte no soporta estadísticas de equipo");
+}
+}

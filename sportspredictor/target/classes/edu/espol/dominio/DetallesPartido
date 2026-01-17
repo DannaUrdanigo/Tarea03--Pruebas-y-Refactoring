@@ -1,0 +1,31 @@
+package edu.espol.dominio;
+public class DetallesPartido {
+private final String equipoLocal;
+private final String equipoVisitante;
+private final String lugar;
+private final String tipoLugar; // "estadio", "pabellon", "cancha"
+public DetallesPartido(String equipoLocal, String equipoVisitante,
+String lugar, String tipoLugar) {
+this.equipoLocal = equipoLocal;
+this.equipoVisitante = equipoVisitante;
+this.lugar = lugar;
+this.tipoLugar = tipoLugar;
+}
+// Getters
+public String getEquipoLocal() { return equipoLocal; }
+public String getEquipoVisitante() { return equipoVisitante; }
+public String getLugar() { return lugar; }
+public String getTipoLugar() { return tipoLugar; }
+@Override
+public String toString() {
+return equipoLocal + " vs " + equipoVisitante + " en " + lugar;
+}
+// Factory methods para conveniencia
+public static DetallesPartido paraFutbol(String local, String visitante, String estadio) {
+return new DetallesPartido(local, visitante, estadio, "estadio");
+}
+public static DetallesPartido paraBaloncesto(String local, String visitante, String pabellon)
+{
+return new DetallesPartido(local, visitante, pabellon, "pabellon");
+}
+}

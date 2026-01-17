@@ -1,0 +1,5 @@
+package edu.espol.Patrones.estructurales;
+public interface CanalNotificacion {
+void enviar(EventoDeportivo evento, String mensaje);
+String getNombreCanal();
+}

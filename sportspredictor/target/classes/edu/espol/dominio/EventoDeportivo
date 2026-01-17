@@ -1,0 +1,5 @@
+package edu.espol.dominio;
+public abstract class EventoDeportivo {
+public abstract String obtenerDetallesParaDisplay();
+// En las subclases
+}
