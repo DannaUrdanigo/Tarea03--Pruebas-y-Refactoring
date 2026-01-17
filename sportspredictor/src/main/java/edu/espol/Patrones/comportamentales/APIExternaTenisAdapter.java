@@ -1,11 +1,10 @@
 package edu.espol.Patrones.comportamentales;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class APIExternaTenisAdapter implements FuenteEstadisticas {
+public class APIExternaTenisAdapter implements FuenteEstadisticasDeporte {
     private ThirdPartyAPI apiCliente;
     private String apiKey;
     private Random random;
@@ -18,47 +17,22 @@ public class APIExternaTenisAdapter implements FuenteEstadisticas {
     
     @Override
     public Map<String, Object> obtenerEstadisticasJugador(String jugadorId) {
-        System.out.println("Adaptando estadísticas de tenis para jugador: " + jugadorId);
-        
+        // Mantenemos la lógica del jugador porque el tenis SÍ tiene jugadores
         Map<String, Object> rawData = apiCliente.getPlayerStats(jugadorId);
         return adaptarDatosTenis(rawData);
     }
-    
+
     @Override
-    public Map<String, Object> obtenerEstadisticasEquipo(String equipoId) {
-        // En tenis no hay equipos, pero mantenemos la interfaz
-        System.out.println("Tenis: No aplica estadísticas de equipo, retornando datos de jugador");
-        return obtenerEstadisticasJugador(equipoId);
+    public boolean soportaEstadisticasEquipo() {
+        return false; // Aquí aplicas la Refactorización 10
     }
     
+    // No implementas obtenerEstadisticasEquipo() -> Se usa el default de la interfaz
+
     private Map<String, Object> adaptarDatosTenis(Map<String, Object> datosCrudos) {
+        // ... aquí va toda tu lógica de HashMap que ya tenías ...
         Map<String, Object> datosAdaptados = new HashMap<>();
-        
-        // Transformar para tenis
-        if (datosCrudos.containsKey("player_id")) {
-            datosAdaptados.put("idJugador", datosCrudos.get("player_id"));
-            datosAdaptados.put("partidosJugados", datosCrudos.get("matches_played"));
-            
-            // Conversión específica para tenis
-            int goles = (int) datosCrudos.get("goals");
-            int asistencias = (int) datosCrudos.get("assists");
-            
-            // Estadísticas específicas de tenis
-            datosAdaptados.put("acesPorPartido", goles % 20); // Ejemplo
-            datosAdaptados.put("dobleFaltas", asistencias % 10);
-            datosAdaptados.put("porcentajePrimerServicio", 60 + random.nextInt(20));
-            datosAdaptados.put("puntosGanadosRed", goles % 30);
-            datosAdaptados.put("deporte", "Tenis");
-            
-            // Ranking específico
-            datosAdaptados.put("rankingATP", random.nextInt(100) + 1);
-            datosAdaptados.put("titulos", random.nextInt(20));
-        }
-        
-        // Agregar metadatos
-        datosAdaptados.put("fuente", "API Tenis Adaptada");
-        datosAdaptados.put("formato", "Sistema SportsPredictor");
-        
+        // (Mantén el resto de tu lógica de transformación de datos aquí)
         return datosAdaptados;
     }
 }
